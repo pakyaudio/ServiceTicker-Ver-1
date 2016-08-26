@@ -1,0 +1,733 @@
+1.1.1.0 (10/04/2558)
+CREATE TABLE `claims` (
+	`claims_id` VARCHAR(100) NULL DEFAULT '-',
+	`customer_id` VARCHAR(100) NULL DEFAULT '-',
+	`serial_pro` VARCHAR(100) NULL DEFAULT '-',
+	`code_pro` VARCHAR(100) NULL DEFAULT '-',
+	`bar_code` VARCHAR(100) NULL DEFAULT '-',
+	`name_pro` VARCHAR(500) NULL DEFAULT '-',
+	`price_buy` VARCHAR(100) NULL DEFAULT '-',
+	`type` VARCHAR(100) NULL DEFAULT '-',
+	`unit` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_sale` VARCHAR(100) NULL DEFAULT '-',
+	`employee_sale` VARCHAR(200) NULL DEFAULT '-',
+	`symptom` VARCHAR(100) NULL DEFAULT '-',
+	`accressory` VARCHAR(500) NULL DEFAULT '-',
+	`note` VARCHAR(1000) NULL DEFAULT '-',
+	`employee` VARCHAR(200) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(100) NULL DEFAULT '-',
+	`claims_id_pic` LONGBLOB NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+CREATE TABLE `claims_id` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`claims_id` VARCHAR(50) NULL DEFAULT '0',
+	`datetime_save` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+INSERT INTO `serviceticker`.`claims_id` (`claims_id`) VALUES ('01');
+####################################################################################################################
+ALTER TABLE `ver_detail`
+	ADD COLUMN `ver_claims` VARCHAR(50) NULL DEFAULT '-' AFTER `ver_cashinvoice`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `status` VARCHAR(50) NULL DEFAULT '-' AFTER `note`;
+####################################################################################################################
+CREATE TABLE `claims_send` (
+	`claims_id` VARCHAR(50) NULL,
+	`claims_company` VARCHAR(500) NULL,
+	`claims_company_id` VARCHAR(50) NULL,
+	`claims_send_status` VARCHAR(50) NULL,
+	`datetime_edit` VARCHAR(100) NULL,
+	`datetime_save` VARCHAR(100) NULL,
+	`employee` VARCHAR(200) NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+CREATE TABLE `claims_company` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`company_id` VARCHAR(50) NULL DEFAULT '-',
+	`company_name` VARCHAR(500) NULL DEFAULT '-',
+	`company_address` VARCHAR(500) NULL DEFAULT '-',
+	`company_contect` VARCHAR(500) NULL DEFAULT '-',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ALTER TABLE `claims_send`
+	CHANGE COLUMN `claims_id` `claims_id` VARCHAR(50) NULL DEFAULT '-' FIRST,
+	CHANGE COLUMN `claims_company` `claims_company` VARCHAR(500) NULL DEFAULT '-' AFTER `claims_id`,
+	CHANGE COLUMN `claims_company_id` `claims_company_id` VARCHAR(50) NULL DEFAULT '-' AFTER `claims_company`,
+	CHANGE COLUMN `claims_send_status` `claims_send_status` VARCHAR(50) NULL DEFAULT '-' AFTER `claims_company_id`,
+	CHANGE COLUMN `datetime_edit` `datetime_edit` VARCHAR(100) NULL DEFAULT '-' AFTER `claims_send_status`,
+	CHANGE COLUMN `datetime_save` `datetime_save` VARCHAR(100) NULL DEFAULT '-' AFTER `datetime_edit`,
+	CHANGE COLUMN `employee` `employee` VARCHAR(200) NULL DEFAULT '-' AFTER `datetime_save`;
+####################################################################################################################
+ALTER TABLE `claims_send`
+	ADD COLUMN `claims_note` VARCHAR(50) NULL DEFAULT '-' AFTER `claims_company_id`;
+####################################################################################################################
+REATE TABLE `claims_company_id` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`claims_company_id` VARCHAR(50) NULL DEFAULT '0',
+	`datetime_save` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+INSERT INTO `serviceticker`.`claims_company_id` (`claims_company_id`) VALUES ('start');
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `datetime_return` VARCHAR(100) NULL DEFAULT '-' AFTER `datetime_sale`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `claims_money` VARCHAR(100) NULL DEFAULT '-' AFTER `datetime_return`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `employee_claims_return` VARCHAR(100) NULL DEFAULT '-' AFTER `claims_money`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `tel_to_cus` VARCHAR(100) NULL DEFAULT '-' AFTER `employee_claims_return`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `datetime_edit` VARCHAR(100) NULL DEFAULT '-' AFTER `datetime_return`;
+####################################################################################################################
+ALTER TABLE `comfix`
+	ADD COLUMN `claims_id` VARCHAR(45) NOT NULL AFTER `fix_id`;
+####################################################################################################################
+ALTER TABLE `applogs`
+	CHANGE COLUMN `user_id` `user_id` VARCHAR(255) NULL DEFAULT '-' FIRST,
+	CHANGE COLUMN `user_name` `user_name` VARCHAR(255) NULL DEFAULT '-' AFTER `user_id`,
+	CHANGE COLUMN `user_usernamelogin` `user_usernamelogin` VARCHAR(255) NULL DEFAULT '-' AFTER `user_name`,
+	ADD COLUMN `note` VARCHAR(255) NULL DEFAULT '-' AFTER `user_usernamelogin`,
+	CHANGE COLUMN `date_in` `date_in` DATETIME NULL DEFAULT NULL AFTER `note`;
+####################################################################################################################
+ALTER TABLE `claims`
+	ADD COLUMN `note2` VARCHAR(1000) NULL DEFAULT '-' AFTER `note`;
+####################################################################################################################
+CREATE TABLE `database_version` (
+	`version` VARCHAR(50) NULL DEFAULT '0'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+INSERT INTO `serviceticker`.`database_version` (`version`) VALUES ('2');
+####################################################################################################################
+CREATE TABLE `serviceticker`.`claims_copy` (
+	`claims_id` VARCHAR(100) NULL DEFAULT '-',
+	`customer_id` VARCHAR(100) NULL DEFAULT '-',
+	`serial_pro` VARCHAR(100) NULL DEFAULT '-',
+	`code_pro` VARCHAR(100) NULL DEFAULT '-',
+	`bar_code` VARCHAR(100) NULL DEFAULT '-',
+	`name_pro` VARCHAR(500) NULL DEFAULT '-',
+	`price_buy` VARCHAR(100) NULL DEFAULT '-',
+	`type` VARCHAR(100) NULL DEFAULT '-',
+	`unit` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_sale` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_return` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_edit` VARCHAR(100) NULL DEFAULT '-',
+	`claims_money` VARCHAR(100) NULL DEFAULT '-',
+	`employee_claims_return` VARCHAR(100) NULL DEFAULT '-',
+	`tel_to_cus` VARCHAR(100) NULL DEFAULT '-',
+	`employee_sale` VARCHAR(200) NULL DEFAULT '-',
+	`symptom` VARCHAR(100) NULL DEFAULT '-',
+	`accressory` VARCHAR(500) NULL DEFAULT '-',
+	`note` VARCHAR(1000) NULL DEFAULT '-',
+	`note2` VARCHAR(1000) NULL DEFAULT '-',
+	`status` VARCHAR(50) NULL DEFAULT '-',
+	`employee` VARCHAR(200) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(100) NULL DEFAULT '-',
+	`claims_id_pic` LONGBLOB NULL
+)
+ COLLATE 'utf8_general_ci' ENGINE=MyISAM ROW_FORMAT=DEFAULT;
+####################################################################################################################
+ยังไม่ได้ใส่ใส่โค๊ตอัพเดท
+dataBase version 2.2
+ALTER TABLE `sn` DROP PRIMARY KEY;
+####################################################################################################################
+ALTER TABLE `product`
+	ADD COLUMN `varuntee` VARCHAR(45) NULL DEFAULT '-' AFTER `unit`;
+####################################################################################################################
+ALTER TABLE `claims_company`
+	ADD COLUMN `company_address1` VARCHAR(500) NULL DEFAULT '-' AFTER `company_address`,
+	ADD COLUMN `company_address2` VARCHAR(500) NULL DEFAULT '-' AFTER `company_address1`,
+	ADD COLUMN `company_zipcode` VARCHAR(500) NULL DEFAULT '-' AFTER `company_address2`;
+####################################################################################################################
+dataBase version 2.3
+ALTER TABLE `company`
+	ADD COLUMN `footer3` VARCHAR(500) NULL DEFAULT '-' AFTER `footer2`;
+####################################################################################################################
+ALTER TABLE `company`
+	ADD COLUMN `com_sendrepairrow3` VARCHAR(500) NULL DEFAULT '-' AFTER `com_sendrepairrow2`;
+####################################################################################################################
+
+ALTER TABLE `company`
+	ADD COLUMN `com_claims` VARCHAR(500) NULL DEFAULT '-' AFTER `com_billing`;
+####################################################################################################################
+CREATE TABLE `serviceticker`.`comfix_cache` (
+	`fix_id` VARCHAR(45) NOT NULL,
+	`claims_id` VARCHAR(45) NOT NULL,
+	`date_save` VARCHAR(20) NULL DEFAULT '-',
+	`customer_id` VARCHAR(100) NULL DEFAULT '-',
+	`customer_name` VARCHAR(100) NULL DEFAULT '-',
+	`sn` VARCHAR(50) NULL DEFAULT '-',
+	`symptom` VARCHAR(100) NULL DEFAULT '-',
+	`managerdata` VARCHAR(100) NULL DEFAULT '-',
+	`fixrepairnote` VARCHAR(500) NULL DEFAULT '-',
+	`fixaccessory` VARCHAR(500) NULL DEFAULT '-',
+	`fixnote` VARCHAR(500) NULL DEFAULT '-',
+	`fixtprice` VARCHAR(45) NULL DEFAULT '-',
+	`varuntee` VARCHAR(45) NULL DEFAULT '-',
+	`date_get` VARCHAR(20) NULL DEFAULT '-',
+	`fixuser` VARCHAR(45) NULL DEFAULT '-',
+	`status` VARCHAR(45) NULL DEFAULT '-',
+	`user_repair` VARCHAR(100) NULL DEFAULT '-',
+	`note_repair` VARCHAR(500) NULL DEFAULT '-',
+	`teltocus` VARCHAR(45) NULL DEFAULT '-',
+	`date_send` VARCHAR(45) NULL DEFAULT '-',
+	`datecom_repair` VARCHAR(45) NULL DEFAULT '-',
+	`comfix_barcode` LONGBLOB NULL,
+	PRIMARY KEY (`fix_id`),
+	UNIQUE INDEX `fix_id_UNIQUE` (`fix_id`)
+)
+ COLLATE 'utf8_general_ci' ENGINE=MyISAM ROW_FORMAT=DEFAULT;
+
+####################################################################################################################
+CREATE TABLE `serviceticker`.`claims_cache` (
+	`claims_id` VARCHAR(100) NULL DEFAULT '-',
+	`customer_id` VARCHAR(100) NULL DEFAULT '-',
+	`serial_pro` VARCHAR(100) NULL DEFAULT '-',
+	`code_pro` VARCHAR(100) NULL DEFAULT '-',
+	`bar_code` VARCHAR(100) NULL DEFAULT '-',
+	`name_pro` VARCHAR(500) NULL DEFAULT '-',
+	`price_buy` VARCHAR(100) NULL DEFAULT '-',
+	`type` VARCHAR(100) NULL DEFAULT '-',
+	`unit` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_sale` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_return` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_edit` VARCHAR(100) NULL DEFAULT '-',
+	`claims_money` VARCHAR(100) NULL DEFAULT '-',
+	`employee_claims_return` VARCHAR(100) NULL DEFAULT '-',
+	`tel_to_cus` VARCHAR(100) NULL DEFAULT '-',
+	`employee_sale` VARCHAR(200) NULL DEFAULT '-',
+	`symptom` VARCHAR(100) NULL DEFAULT '-',
+	`accressory` VARCHAR(500) NULL DEFAULT '-',
+	`note` VARCHAR(1000) NULL DEFAULT '-',
+	`note2` VARCHAR(1000) NULL DEFAULT '-',
+	`status` VARCHAR(50) NULL DEFAULT '-',
+	`employee` VARCHAR(200) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(100) NULL DEFAULT '-',
+	`claims_id_pic` LONGBLOB NULL
+)
+ COLLATE 'utf8_general_ci' ENGINE=MyISAM ROW_FORMAT=DEFAULT;
+####################################################################################################################
+dataBase version 2.4
+CREATE TABLE `audit_outgoings` (
+	`datetime` VARCHAR(100) NULL DEFAULT '-',
+	`namewiden` VARCHAR(200) NULL DEFAULT '-',
+	`list` VARCHAR(200) NULL DEFAULT '-',
+	`money` VARCHAR(200) NULL DEFAULT '-',
+	`note` VARCHAR(200) NULL DEFAULT '-'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+CREATE TABLE `audit` (
+	`datetime` VARCHAR(100) NULL DEFAULT '0',
+	`money1` VARCHAR(100) NULL DEFAULT '0',
+	`money2` VARCHAR(100) NULL DEFAULT '0',
+	`money5` VARCHAR(100) NULL DEFAULT '0',
+	`money10` VARCHAR(100) NULL DEFAULT '0',
+	`money20` VARCHAR(100) NULL DEFAULT '0',
+	`money50` VARCHAR(100) NULL DEFAULT '0',
+	`money100` VARCHAR(100) NULL DEFAULT '0',
+	`money500` VARCHAR(100) NULL DEFAULT '0',
+	`money1000` VARCHAR(100) NULL DEFAULT '0',
+	`totalAll` VARCHAR(100) NULL DEFAULT '0',
+	`check` VARCHAR(100) NULL DEFAULT '0',
+	`transfer` VARCHAR(100) NULL DEFAULT '0',
+	`cash` VARCHAR(100) NULL DEFAULT '0',
+	`charges` VARCHAR(100) NULL DEFAULT '0',
+	`deliverMorning` VARCHAR(100) NULL DEFAULT '0',
+	`deliverNoon` VARCHAR(100) NULL DEFAULT '0',
+	`deliverEvening` VARCHAR(100) NULL DEFAULT '0',
+	`totalDeliver` VARCHAR(100) NULL DEFAULT '0',
+	`difference` VARCHAR(100) NULL DEFAULT '0'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+เวอร์ชั่น 2.5
+CREATE TABLE `stock_number_cache` (
+	`number` VARCHAR(50) NULL,
+	`code_pro` VARCHAR(200) NULL,
+	`bar_code` VARCHAR(200) NULL,
+	`name_pro` VARCHAR(500) NULL,
+	`type` VARCHAR(100) NULL,
+                     `price_cost` VARCHAR(100) NULL,
+	`total_all` VARCHAR(100) NULL,
+                     `total_cost` VARCHAR(100) NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+CREATE TABLE `stock_number_sn_cache` (
+	`no` VARCHAR(50) NULL,
+	`code_pro` VARCHAR(100) NULL,
+	`sn` VARCHAR(100) NULL,
+                     `name_pro` VARCHAR(500) NULL,
+	`datetime` VARCHAR(100) NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM;
+####################################################################################################################
+เวอร์ชั่น 2.6
+ALTER TABLE `comfix`
+	ADD COLUMN `importune` VARCHAR(45) NULL DEFAULT '-' AFTER `datecom_repair`;
+####################################################################################################################
+ALTER TABLE `comfix_cache`
+	ADD COLUMN `importune` VARCHAR(45) NULL DEFAULT '-' AFTER `datecom_repair`;
+####################################################################################################################
+ALTER TABLE `comfix`
+	ADD COLUMN `storage` VARCHAR(100) NULL DEFAULT '-' AFTER `importune`;
+####################################################################################################################
+CREATE TABLE `sn_id` (
+	`id` INT(100) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`id` V` VARCHAR(50) NULL DEFAULT '0',
+	`datetime_save` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+ COLLATE 'utf8_general_ci' ENGINE=MyISAM ROW_FORMAT=DEFAULT; AUTO_INCREMENT=3;
+
+####################################################################################################################
+INSERT INTO `sn_id` (`sn_id`) VALUES ('01');
+####################################################################################################################
+เวอร์ชั่น 2.7
+ok
+ALTER TABLE `product`
+	ADD COLUMN `price_wholesale` VARCHAR(45) NULL DEFAULT '-' AFTER `price_buy`,
+	ADD COLUMN `price_technician` VARCHAR(45) NULL DEFAULT '-' AFTER `price_wholesale`,
+	ADD COLUMN `price_loyal` VARCHAR(45) NULL DEFAULT '-' AFTER `price_technician`,
+	ADD COLUMN `price_members` VARCHAR(45) NULL DEFAULT '-' AFTER `price_loyal`,
+	ADD COLUMN `spec` VARCHAR(1000) NULL DEFAULT '-' AFTER `notepro`;
+####################################################################################################################
+ok
+ALTER TABLE `customer`
+	ADD COLUMN `price_level` VARCHAR(10) NOT NULL AFTER `customer_note`;
+
+####################################################################################################################
+ok
+INSERT INTO `customer` (`customer_id`, `customer_tax`, `customer_section`, `customer_name`, `customer_address`, `customer_zipcode`, `customer_tel`, `customer_note`, `price_level`) VALUES ('0', '000000000000', '-', 'ลูกค้าเงินสด', 'รับสินค้าเอง', '-', '-', '-', '1');
+####################################################################################################################
+ok
+ALTER TABLE `product`
+	CHANGE COLUMN `price_buy` `price_buy` VARCHAR(45) NULL DEFAULT '0' AFTER `price_cost`,
+	CHANGE COLUMN `price_wholesale` `price_wholesale` VARCHAR(45) NULL DEFAULT '0' AFTER `price_buy`,
+	CHANGE COLUMN `price_technician` `price_technician` VARCHAR(45) NULL DEFAULT '0' AFTER `price_wholesale`,
+	CHANGE COLUMN `price_loyal` `price_loyal` VARCHAR(45) NULL DEFAULT '0' AFTER `price_technician`,
+	CHANGE COLUMN `price_members` `price_members` VARCHAR(45) NULL DEFAULT '0' AFTER `price_loyal`;
+####################################################################################################################
+ok
+ALTER TABLE `product`
+	CHANGE COLUMN `price_cost` `price_cost` VARCHAR(45) NULL DEFAULT '0' AFTER `name_pro`;
+
+####################################################################################################################
+ok
+CREATE TABLE `product_model` ( `p_name` VARCHAR(200) NULL DEFAULT '-',`p_model` VARCHAR(200) NULL DEFAULT '-')COLLATE='utf8_general_ci' ENGINE=MyISAM;
+####################################################################################################################
+ok
+CREATE TABLE `product_color` (`id` INT NOT NULL AUTO_INCREMENT, `color` VARCHAR(100) NULL DEFAULT '0', PRIMARY KEY (`id`)) COLLATE='utf8_general_ci' ENGINE=MyISAM;
+####################################################################################################################
+ok
+INSERT INTO `product_color` (`color`) VALUES ('ดำ');
+INSERT INTO `product_color` (`color`) VALUES ('แดง');
+INSERT INTO `product_color` (`color`) VALUES ('เทา');
+INSERT INTO `product_color` (`color`) VALUES ('ฟ้า');
+####################################################################################################################
+ok
+CREATE TABLE IF NOT EXISTS `sn_id` (
+  `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
+  `sn_id` varchar(50) DEFAULT '0',
+  `datetime_save` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+####################################################################################################################
+ok
+ALTER TABLE `claims`
+	ADD COLUMN `price_wholesale` VARCHAR(100) NULL DEFAULT '-' AFTER `price_buy`,
+	ADD COLUMN `price_technician` VARCHAR(100) NULL DEFAULT '-' AFTER `price_wholesale`,
+	ADD COLUMN `price_loyal` VARCHAR(100) NULL DEFAULT '-' AFTER `price_technician`,
+	ADD COLUMN `price_members` VARCHAR(100) NULL DEFAULT '-' AFTER `price_loyal`;
+####################################################################################################################
+ok
+ALTER TABLE `claims_cache`
+	ADD COLUMN `price_wholesale` VARCHAR(100) NULL DEFAULT '-' AFTER `price_buy`,
+	ADD COLUMN `price_technician` VARCHAR(100) NULL DEFAULT '-' AFTER `price_wholesale`,
+	ADD COLUMN `price_loyal` VARCHAR(100) NULL DEFAULT '-' AFTER `price_technician`,
+	ADD COLUMN `price_members` VARCHAR(100) NULL DEFAULT '-' AFTER `price_loyal`;
+####################################################################################################################
+ok
+CREATE TABLE `claims_send_report` (
+	`claims_id` VARCHAR(100) NULL DEFAULT '-',
+	`customer_id` VARCHAR(100) NULL DEFAULT '-',
+	`serial_pro` VARCHAR(100) NULL DEFAULT '-',
+	`code_pro` VARCHAR(100) NULL DEFAULT '-',
+	`bar_code` VARCHAR(100) NULL DEFAULT '-',
+	`name_pro` VARCHAR(500) NULL DEFAULT '-',
+	`price_buy` VARCHAR(100) NULL DEFAULT '-',
+	`price_wholesale` VARCHAR(100) NULL DEFAULT '-',
+	`price_technician` VARCHAR(100) NULL DEFAULT '-',
+	`price_loyal` VARCHAR(100) NULL DEFAULT '-',
+	`price_members` VARCHAR(100) NULL DEFAULT '-',
+	`type` VARCHAR(100) NULL DEFAULT '-',
+	`unit` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_sale` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_return` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_edit` VARCHAR(100) NULL DEFAULT '-',
+	`claims_money` VARCHAR(100) NULL DEFAULT '-',
+	`employee_claims_return` VARCHAR(100) NULL DEFAULT '-',
+	`tel_to_cus` VARCHAR(100) NULL DEFAULT '-',
+	`employee_sale` VARCHAR(200) NULL DEFAULT '-',
+	`symptom` VARCHAR(100) NULL DEFAULT '-',
+	`accressory` VARCHAR(500) NULL DEFAULT '-',
+	`note` VARCHAR(1000) NULL DEFAULT '-',
+	`note2` VARCHAR(1000) NULL DEFAULT '-',
+	`status` VARCHAR(50) NULL DEFAULT '-',
+	`employee` VARCHAR(200) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(100) NULL DEFAULT '-',
+	`claims_id_pic` LONGBLOB NULL
+)
+ COLLATE 'utf8_general_ci' ENGINE=MyISAM ROW_FORMAT=Dynamic;
+####################################################################################################################
+ok
+ALTER TABLE `claims_send`
+	ADD COLUMN `claims_lot` VARCHAR(50) NULL DEFAULT '-' AFTER `claims_send_status`;
+####################################################################################################################
+ok
+CREATE TABLE `claims_lot_id` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`claims_lot` VARCHAR(100) NULL DEFAULT '0',
+	`datetime_save` VARCHAR(100) NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+INSERT INTO `claims_lot_id` (`id`, `claims_lot`) VALUES (0, 'start');
+####################################################################################################################
+ok
+CREATE TABLE `claims_test_results` (
+	`claims_id` VARCHAR(50) NULL DEFAULT '-',
+	`fix_by_company` VARCHAR(50) NULL DEFAULT '-',
+	`old_sn` VARCHAR(50) NULL DEFAULT '-',
+	`new_sn` VARCHAR(50) NULL DEFAULT '-',
+	`test_results` VARCHAR(50) NULL DEFAULT '-',
+	`test_note` VARCHAR(500) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(50) NULL DEFAULT '-'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+ALTER TABLE `customer`
+	CHANGE COLUMN `customer_id` `customer_id` VARCHAR(45) NOT NULL DEFAULT '-' FIRST,
+	CHANGE COLUMN `customer_tax` `customer_tax` VARCHAR(45) NOT NULL DEFAULT '0000000000000' AFTER `customer_id`,
+	CHANGE COLUMN `customer_section` `customer_section` VARCHAR(100) NOT NULL DEFAULT '-' AFTER `customer_tax`,
+	CHANGE COLUMN `customer_name` `customer_name` VARCHAR(100) NOT NULL DEFAULT '-' AFTER `customer_section`,
+	CHANGE COLUMN `customer_address` `customer_address` VARCHAR(200) NOT NULL DEFAULT '-' AFTER `customer_name`,
+	CHANGE COLUMN `customer_zipcode` `customer_zipcode` VARCHAR(45) NOT NULL DEFAULT '-' AFTER `customer_address`,
+	CHANGE COLUMN `customer_tel` `customer_tel` VARCHAR(45) NOT NULL DEFAULT '-' AFTER `customer_zipcode`,
+	CHANGE COLUMN `customer_note` `customer_note` VARCHAR(255) NOT NULL DEFAULT '-' AFTER `customer_tel`,
+	CHANGE COLUMN `price_level` `price_level` VARCHAR(10) NOT NULL DEFAULT '-' AFTER `customer_note`,
+	ADD COLUMN `maturity` VARCHAR(50) NOT NULL DEFAULT '-' AFTER `price_level`,
+	ADD COLUMN `date_edit` VARCHAR(50) NOT NULL DEFAULT '-' AFTER `maturity`;
+####################################################################################################################
+ok
+ALTER TABLE `company`
+	ADD COLUMN `com_qjob` VARCHAR(500) NULL DEFAULT '-' AFTER `com_claims`;
+####################################################################################################################
+ok
+UPDATE `company` SET `com_qjob`='แจ้งเตือนมีงานซ่อมด่วนเข้า' WHERE  `ID`=1;
+####################################################################################################################
+ok
+INSERT INTO `sn_id` (`sn_id`) VALUES ('start');
+####################################################################################################################
+เวอร์ชั่น 2.8   มีในตัวอัพเดท
+####################################################################################################################
+เวอร์ชั่น 2.9
+####################################################################################################################
+ok
+CREATE TABLE `reportuserrepair` (
+	`no` VARCHAR(50) NULL,
+	`fix_id` VARCHAR(50) NULL,
+	`cus_name` VARCHAR(200) NULL,
+	`code_pro` VARCHAR(50) NULL,
+	`name_pro` VARCHAR(50) NULL,
+	`total` VARCHAR(50) NULL,
+	`price_cost` VARCHAR(50) NULL,
+	`price_buy` VARCHAR(50) NULL,
+	`discount` VARCHAR(50) NULL,
+	`total_cost` VARCHAR(50) NULL,
+	`total_buy` VARCHAR(50) NULL,
+	`datetime_save` VARCHAR(50) NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+ALTER TABLE `claims_copy`
+	ADD COLUMN `price_wholesale` VARCHAR(100) NULL DEFAULT '-' AFTER `price_buy`,
+	ADD COLUMN `price_technician` VARCHAR(100) NULL DEFAULT '-' AFTER `price_wholesale`,
+	ADD COLUMN `price_loyel` VARCHAR(100) NULL DEFAULT '-' AFTER `price_technician`,
+	ADD COLUMN `price_members` VARCHAR(100) NULL DEFAULT '-' AFTER `price_loyel`;
+####################################################################################################################
+วันที่ 16/11/2558
+3.0
+ok
+ALTER TABLE `ver_detail`
+	ALTER `ver_icon` DROP DEFAULT;
+####################################################################################################################
+ok
+ALTER TABLE `ver_detail`
+	CHANGE COLUMN `ver_icon` `ver_icon` LONGBLOB NULL AFTER `ver_version`;
+####################################################################################################################
+ok
+CREATE TABLE `check_stock_bc` (
+	`csbc_id` VARCHAR(50) NULL DEFAULT '-',
+	`code_pro` VARCHAR(200) NULL DEFAULT '-',
+	`bar_code` VARCHAR(200) NULL DEFAULT '-',
+	`name_pro` VARCHAR(500) NULL DEFAULT '-',
+	`price_buy` VARCHAR(100) NULL DEFAULT '-',
+	`count_num` VARCHAR(100) NULL DEFAULT '-',
+	`count` VARCHAR(100) NULL DEFAULT '-',
+	`datetime_save` VARCHAR(50) NULL DEFAULT '-'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+CREATE TABLE `check_stock_bc_id` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`csbc_id` VARCHAR(50) NULL DEFAULT '0',
+	`total_pro_bc` VARCHAR(50) NULL DEFAULT '0',
+	`count_num` VARCHAR(50) NULL DEFAULT '0',
+	`disappear` VARCHAR(50) NULL DEFAULT '0',
+	`over` VARCHAR(50) NULL DEFAULT '0',
+	`csbc_status` VARCHAR(50) NULL DEFAULT '0',
+	`datetime_save` VARCHAR(50) NULL DEFAULT '0',
+	`datetime_last` VARCHAR(50) NULL DEFAULT '0',
+	`employee` VARCHAR(200) NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+INSERT INTO `check_stock_bc_id` (`csbc_id`) VALUES ('start');
+####################################################################################################################
+####################################################################################################################
+วันที่ 28/01/2559
+3.1
+####################################################################################################################
+ok
+CREATE TABLE `shelf` (
+	`s` VARCHAR(255) NULL
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+CREATE TABLE `credit_card` (
+	`card_type` VARCHAR(50) NULL DEFAULT 'none'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+INSERT INTO `credit_card` (`card_type`) VALUES ('MasterCard');
+####################################################################################################################
+ok
+INSERT INTO `credit_card` (`card_type`) VALUES ('Visa');
+####################################################################################################################
+ok
+INSERT INTO `credit_card` (`card_type`) VALUES ('American Express');
+####################################################################################################################
+ok
+INSERT INTO `credit_card` (`card_type`) VALUES ('Discover');
+####################################################################################################################
+ok
+CREATE TABLE `credit_card_bank` (
+	`bank_name` VARCHAR(200) NULL DEFAULT 'none'
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('กรุงไทย');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('กรุงเทพ');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('กสิกรไทย');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ไทยพานิชย์');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ซิตี้แบงก์');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('กรุงศรีอยุธยา');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('อิออน');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ธนชาติ');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ทหารไทย');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ยูโอบี');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ซีไอเอ็มบี');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ธนาคารแห่งประเทศจีน');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('สแตนดาร์ดชาร์เตอร์');
+####################################################################################################################
+ok
+INSERT INTO `credit_card_bank` (`bank_name`) VALUES ('ไอซีบีซี');
+####################################################################################################################
+ver 3.2
+21/02/2559
+ok
+CREATE TABLE `access_lavel` (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`access` INT(10) NULL DEFAULT '0',
+	`zone` VARCHAR(100) NULL DEFAULT '-',
+	`link` VARCHAR(100) NULL DEFAULT '-',
+	`leval` INT(5) NULL DEFAULT '1',
+	`datetime_edit` VARCHAR(50) NULL DEFAULT '-',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+####################################################################################################################
+ok
+DROP TABLE IF EXISTS `access_lavel`;
+####################################################################################################################
+ok
+CREATE TABLE IF NOT EXISTS `access_lavel` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `access` int(10) DEFAULT '0',
+  `zone` varchar(100) DEFAULT '-',
+  `link` varchar(100) DEFAULT '-',
+  `leval` int(5) DEFAULT '1' COMMENT '1 ผู้ใช้งาน 2 หัวหน้า 3 ผู้ดูแล',
+  `datetime_edit` varchar(50) DEFAULT '-',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+####################################################################################################################
+ok
+-- Dumping data for table serviceticker.access_lavel: 31 rows
+DELETE FROM `access_lavel`;
+####################################################################################################################
+ok
+/*!40000 ALTER TABLE `access_lavel` DISABLE KEYS */;
+INSERT INTO `access_lavel` (`id`, `access`, `zone`, `link`, `leval`, `datetime_edit`) VALUES
+	(1, 1, 'ผู้ใช้งาน', 'ตั้งค่า >> ผู้ใช้งาน', 3, '-'),
+	(2, 0, 'ข้อมูลลูกค้า', 'ตั้งค่า >> ข้อมูลลูกค้า', 1, '-'),
+	(3, 1, 'ตั้งค่าโปรแกรม', 'ตั้งค่า >> ตั้งค่าโปรแกรม >> ตั้งค่าโปรแกรม', 3, '-'),
+	(4, 1, 'ตั้งค่าข้อมูลบัตรเครดิต', 'ตั้งค่า >> ตั้งค่าโปรแกรม >> ตั้งค่าข้อมูลบัตรเครดิต', 3, '-'),
+	(5, 1, 'ตั้งค่าสิทธิการใช้งานโปรแกรม', 'ตั้งค่า >> ตั้งค่าโปรแกรม >> ตั้งค่าสิทธิการใช้งานโปรแกรม', 3, '-'),
+	(6, 0, 'สำรองฐานข้อมูล', 'ตั้งค่า >> จัดการฐานข้อมูล >> สำรองฐานข้อมูล', 1, '-'),
+	(7, 1, 'นำเข้าฐานข้อมูล', 'ตั้งค่า >> จัดการฐานข้อมูล >> นำเข้าฐานข้อมูล', 3, '-'),
+	(8, 1, 'เปลี่ยนฐานข้อมูล', 'ตั้งค่า >> จัดการฐานข้อมูล >> เปลี่ยนฐานข้อมูล', 3, '-'),
+	(9, 0, 'ปรับปรุงฐานข้อมูล', 'ตั้งค่า >> จัดการฐานข้อมูล >> ปรับปรุงฐานข้อมูล', 3, '-'),
+	(10, 1, 'User Logs', 'ตั้งค่า >> Logs >> User Logs', 1, '-'),
+	(11, 1, 'ข้อมูลสถานประกอบการ', 'ตั้งค่า >> ข้อมูลสถานประกอบการ', 3, '-'),
+	(12, 1, 'รับงานซ่อม', 'งานช่าง >> รับงานซ่อม', 1, '-'),
+	(13, 1, 'สถานะงานซ่อม', 'งานช่าง >> สถานะงานซ่อม', 1, '-'),
+	(14, 0, 'ค้นหางานซ่อม', 'งานช่าง >> ค้นหางานซ่อม', 1, '-'),
+	(15, 1, 'ส่งคืนงานซ่อม', 'งานช่าง >> ส่งคืนงานซ่อม', 1, '-'),
+	(16, 0, 'รายงานการซ่อมตามรายชื่อช่างซ่อม', 'งานช่าง >> รายงาน >> รายงานการซ่อมตามรายชื่อช่างซ่อม', 1, '-'),
+	(17, 0, 'รายงานประวิติงานซ่อม', 'งานช่าง >> รายงาน >> รายงานประวัติงานซ่อม', 1, '-'),
+	(18, 0, 'สถิติงานช่าง', 'งานช่าง >> รายงาน >> สถิติงานช่าง', 1, '-'),
+	(19, 0, 'รายงานการเบิกสินค้า แบบแสดงรายชื่อสินค้า', 'งานช่าง >> รายงาน >> รายงานการเบิกสินค้า แบบแสดงรายชื่อสินค้า', 1, '-'),
+	(20, 0, 'รายงานรวมเบิกสินค้าตามวันที่', 'งานช่าง >> รายงาน >> รายงานเบิกสินค้าตามวันที่', 1, '-'),
+	(21, 0, 'เช็คประกันงานซ่อม', 'งานช่าง >> เช็คประกัน/ประวัติ >> เช็คประกันงานซ่อม', 1, '-'),
+	(22, 0, 'เช็คประวิติซ่อมเปลี่ยนอะไหล่', 'งานช่าง >> เช็คประกัน/ประวิติ >> เช็คประวิติซ่อมเปลี่ยนอะไหล่', 1, '-'),
+	(23, 0, 'เช็คประกันกับบริษัทผู้จำหน่าย', 'งานช่าง >> เช็คประกัน/ประวัติ >> เช็คประกันกับบริษัทผู้จำหน่าย', 1, '-'),
+	(24, 1, 'ข้อมูลประเภทสินค้า', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลประเภทสินค้า', 1, '-'),
+	(25, 0, 'ข้อมูลยี่ห้อสินค้า', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลยี่ห้อสินค้า', 1, '-'),
+	(26, 1, 'ข้อมูลอาการเสีย', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลอาการเสีย', 1, '-'),
+	(27, 1, 'ข้อมูลการจัดการข้อมูล', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลการจัดการข้อมูล', 1, '-'),
+	(28, 1, 'ข้อมูลอุปกรณ์ที่นำมาด้วย', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลอุปกรณ์ที่นำมาด้วย', 1, '-'),
+	(29, 1, 'ข้อมูลสีตัวสินค้า', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูลสีตัวสินค้า', 1, '-'),
+	(30, 1, 'ข้อมูล SN เครื่องซ่อม', 'งานช่าง >> ตั้งค่าข้อมูลงานช่าง >> ข้อมูล SN เครื่องซ่อม', 1, '-'),
+	(31, 0, 'พิมพ์ใบรับซ่อม/ส่งคืนย้อนหลัง', 'งานช่าง >> พิมพ์ >> พิมพ์ใบรับซ่อม/ส่งคืนย้อนหลัง', 1, '-'),
+	(33, 0, 'รายการสั่งซื้อสินค้า', 'งานจัดซื้อ >> รายการสั่งซื้อสินค้า', 1, '-'),
+	(32, 0, 'สั่งซื้อสินค้า', 'งานจัดซื้อ >> สั่งซื้อสินค้า', 1, '-'),
+	(34, 0, 'รับสินค้าเข้าระบบ', 'งานจัดซื้อ >> รับสินค้าเข้าระบบ', 1, '-'),
+	(35, 0, 'รายชื่อบริษัทที่สั่งซื้อ', 'งานจัดซื้อ >> รายชื่อบริษัทที่จัดซื้อ', 1, '-'),
+	(36, 0, 'รายงานการรับสินค้า', 'งานจัดซื้อ >> รายงานการรับสินค้า', 1, '-'),
+	(37, 0, 'ขายสินค้า', 'งานขาย >> ขายสินค้า', 1, '-'),
+	(38, 0, 'คืนสินค้า/ยกเลิกบิลขาย', 'งานขาย >> ขายสินค้า/ยกเลิกบิลขาย', 1, '-'),
+	(39, 0, 'รายงานรวมขายสินค้าตามวันที่', 'งานขาย >> รายงานรวมขายสินค้าตามวันที่', 1, '-'),
+	(40, 0, 'รายงานขาย แบบแสดงรายชื่อสินค้า', 'งานขาย >> รายงานขาย แบบแสดงรายชื่อสินค้า', 1, '-'),
+	(41, 0, 'รายงานการคืน รวม', 'งานขาย >> รายงานการคืน รวม', 1, '-'),
+	(42, 0, 'รายงานคืนสินค้าแบบแสดงชื่อสินค้า', 'งานขาย >> รายงานคืนสินค้าแบบแสดงชื่อสินค้า', 1, '-'),
+	(43, 0, 'สถิติงานขาย', 'งานขาย >> สถิติงานขาย', 1, '-'),
+	(44, 0, 'ตรวจสอบราคาสินค้า', 'งานขาย >> ตรวจสอบราคาสินค้า', 1, '-'),
+	(45, 0, 'เช็คประกันตัวสินค้า', 'งานขาย >> เช็คประกันตัวสินค้า', 1, '-'),
+	(46, 1, 'รับเคลมสินค้า', 'งานเคลม >> รับเคลมสินค้า', 1, '-'),
+	(47, 1, 'เตรียมสินค้าเคลม', 'งามเคลม >> จัดการสินค้าเคลม(ส่งออกข้างนอก) >> เตรียมสินค้าเคลม ', 1, '-'),
+	(48, 1, 'ส่งสินค้าเคลม', 'งามเคลม >> จัดการสินค้าเคลม(ส่งออกข้างนอก) >> ส่งสินค้าเคลม', 1, '-'),
+	(49, 1, 'รับเข้าสินค้าเคลม', 'งามเคลม >> จัดการสินค้าเคลม(ส่งออกข้างนอก) >> รับเข้าสินค้าเคลม', 1, '-'),
+	(50, 1, 'ทดสอบสินค้าเคลม', 'งามเคลม >> จัดการสินค้าเคลม(ส่งออกข้างนอก) >> ทดสอบสินค้าเคลม', 1, '-'),
+	(51, 1, 'นำเข้าสินค้าเคลม', 'งามเคลม >> จัดการสินค้าเคลม(ส่งออกข้างนอก) >> นำเข้าสินค้าเคลม', 1, '-'),
+	(52, 1, 'ติดตามสถานะเคลม', 'งานเคลม >> ติดตามสถานะเคลม', 1, '-'),
+	(53, 1, 'คืนสินค้าเคลม', 'งานเคลม >> คืนสินค้าเคลม', 1, '-'),
+	(54, 0, 'พิมพ์ใบปะหน้ากล่อง', 'งานเคลม >> พิมพ์ใบปะหน้ากล่อง', 1, '-'),
+	(55, 0, 'รายงานการเคลม', 'งานเคลม >> รายงานการเคลม', 1, '-'),
+	(56, 1, 'ลูกหนี้ค้างจ่าย', 'งานบัญชี/การเงิน >> ลูกหนี้ค้างจ่าย', 1, '-'),
+	(57, 1, 'ตรวจสอบบัญชี/บันทึกค่าใช้จ่าย', 'งานบัญชี/การเงิน >> ตรวจสอบบัญชี/บันทึกค่าใช้จ่าย', 1, '-'),
+	(58, 0, 'รายงานรายรับ/รายจ่าย', 'งานบัญชี/การเงิน >> รายงาน >> รายงานรายรับ/รายจ่าย', 1, '-'),
+	(59, 0, 'สถิติรายปี', 'งานบัญชี/การเงิน >> รายงาน >> สถิติรายปี', 1, '-'),
+	(60, 0, 'รายการสินค้า', 'สต็อกสินค้า >> รายการสินค้า', 1, '-'),
+	(61, 0, 'เช็คสต็อก Serial Number', 'สต็อกสินค้า >> เช็คสต็อก >> เช็คสต็อก Serial Number', 1, '-'),
+	(62, 0, 'เช็คสต็อกบาร์โค๊ต', 'สต็อกสินค้า >> เช็คสต็อก >> เช็คสต็อกบาร์โค๊ต', 1, '-'),
+	(63, 0, 'รายงานตรวจสอบสต็อก SN', 'สต็อกสินค้า >> รายงาน >> รายงานตรวจสอบสต็อก SN', 1, '-'),
+	(64, 0, 'รายงานตรวจสอบสต็อกบาร์โค๊ต', 'สต็อกสินค้า >> รายงาน >> รายงานตรวจสอบสต็อกบาร์โค๊ต', 1, '-'),
+	(65, 0, 'รายงานยอดรวมสต็อก', 'สต็อกสินค้า >> รายงาน >> รายงานยอดรวมสต็อก', 1, '-'),
+	(66, 0, 'รายงานจำนวนสต็อก', 'สต็อกสินค้า >> รายงาน >> รายงานจำนวนสต็อก', 1, '-'),
+	(67, 0, 'ออกใบเสนอราคา', 'ออกใบต่าง ๆ >> ใบเสนอราคา >> ออกใบเสนิราคา', 1, '-'),
+	(68, 0, 'ค้นหาใบเสนอราคา', 'ออกใบต่าง ๆ >> ใบเสนอราคา >> ค้นหาใบเสนอราคา', 1, '-'),
+	(69, 0, 'ออกใบกำกับภาษี/ใบส่งของ', 'ออกใบต่าง ๆ >> ออกใบกำกับภาษี/ใบส่งของ', 1, '-'),
+	(70, 1, 'เบิกอะไหล่/ค่าซ่อม', 'งานช่าง >> สถานะงานซ่อม >> เบิกอะไหล์/ค่าซ่อม(ปุ่ม)', 1, '-');

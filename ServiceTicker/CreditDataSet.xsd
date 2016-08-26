@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CreditDataSet" targetNamespace="http://tempuri.org/CreditDataSet.xsd" xmlns:mstns="http://tempuri.org/CreditDataSet.xsd" xmlns="http://tempuri.org/CreditDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="servicetickerConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="servicetickerConnectionString2 (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ServiceTicker.My.MySettings.GlobalReference.Default.servicetickerConnectionString2" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="servicetickerConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="servicetickerConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ServiceTicker.My.MySettings.GlobalReference.Default.servicetickerConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="pledge_saleTableAdapter" GeneratorDataComponentClassName="pledge_saleTableAdapter" Name="pledge_sale" UserDataComponentName="pledge_saleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="servicetickerConnectionString (MySettings)" DbObjectName="serviceticker.pledge_sale" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillCredit" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataCredit" GeneratorSourceName="FillCredit" GetMethodModifier="Public" GetMethodName="GetDataCredit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataCredit" UserSourceName="FillCredit">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT `p_id`, `total1`, `cash1`, `transfer1`, `check1`, `detail1`, `customer_id`, `customer_name`, `employee`, `datetime_save` FROM `pledge_sale`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="p_id" DataSetColumn="p_id" />
+              <Mapping SourceColumn="total1" DataSetColumn="total1" />
+              <Mapping SourceColumn="cash1" DataSetColumn="cash1" />
+              <Mapping SourceColumn="transfer1" DataSetColumn="transfer1" />
+              <Mapping SourceColumn="check1" DataSetColumn="check1" />
+              <Mapping SourceColumn="detail1" DataSetColumn="detail1" />
+              <Mapping SourceColumn="customer_id" DataSetColumn="customer_id" />
+              <Mapping SourceColumn="customer_name" DataSetColumn="customer_name" />
+              <Mapping SourceColumn="employee" DataSetColumn="employee" />
+              <Mapping SourceColumn="datetime_save" DataSetColumn="datetime_save" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CreditDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CreditDataSet" msprop:Generator_UserDSName="CreditDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="pledge_sale" msprop:Generator_TableClassName="pledge_saleDataTable" msprop:Generator_TableVarName="tablepledge_sale" msprop:Generator_TablePropName="pledge_sale" msprop:Generator_RowDeletingName="pledge_saleRowDeleting" msprop:Generator_RowChangingName="pledge_saleRowChanging" msprop:Generator_RowEvHandlerName="pledge_saleRowChangeEventHandler" msprop:Generator_RowDeletedName="pledge_saleRowDeleted" msprop:Generator_UserTableName="pledge_sale" msprop:Generator_RowChangedName="pledge_saleRowChanged" msprop:Generator_RowEvArgName="pledge_saleRowChangeEvent" msprop:Generator_RowClassName="pledge_saleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="p_id" msprop:Generator_ColumnVarNameInTable="columnp_id" msprop:Generator_ColumnPropNameInRow="p_id" msprop:Generator_ColumnPropNameInTable="p_idColumn" msprop:Generator_UserColumnName="p_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="total1" msprop:Generator_ColumnVarNameInTable="columntotal1" msprop:Generator_ColumnPropNameInRow="total1" msprop:Generator_ColumnPropNameInTable="total1Column" msprop:Generator_UserColumnName="total1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cash1" msprop:Generator_ColumnVarNameInTable="columncash1" msprop:Generator_ColumnPropNameInRow="cash1" msprop:Generator_ColumnPropNameInTable="cash1Column" msprop:Generator_UserColumnName="cash1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="transfer1" msprop:Generator_ColumnVarNameInTable="columntransfer1" msprop:Generator_ColumnPropNameInRow="transfer1" msprop:Generator_ColumnPropNameInTable="transfer1Column" msprop:Generator_UserColumnName="transfer1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="check1" msprop:Generator_ColumnVarNameInTable="columncheck1" msprop:Generator_ColumnPropNameInRow="check1" msprop:Generator_ColumnPropNameInTable="check1Column" msprop:Generator_UserColumnName="check1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="detail1" msprop:Generator_ColumnVarNameInTable="columndetail1" msprop:Generator_ColumnPropNameInRow="detail1" msprop:Generator_ColumnPropNameInTable="detail1Column" msprop:Generator_UserColumnName="detail1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="customer_id" msprop:Generator_ColumnVarNameInTable="columncustomer_id" msprop:Generator_ColumnPropNameInRow="customer_id" msprop:Generator_ColumnPropNameInTable="customer_idColumn" msprop:Generator_UserColumnName="customer_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="customer_name" msprop:Generator_ColumnVarNameInTable="columncustomer_name" msprop:Generator_ColumnPropNameInRow="customer_name" msprop:Generator_ColumnPropNameInTable="customer_nameColumn" msprop:Generator_UserColumnName="customer_name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="employee" msprop:Generator_ColumnVarNameInTable="columnemployee" msprop:Generator_ColumnPropNameInRow="employee" msprop:Generator_ColumnPropNameInTable="employeeColumn" msprop:Generator_UserColumnName="employee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="datetime_save" msprop:Generator_ColumnVarNameInTable="columndatetime_save" msprop:Generator_ColumnPropNameInRow="datetime_save" msprop:Generator_ColumnPropNameInTable="datetime_saveColumn" msprop:Generator_UserColumnName="datetime_save" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

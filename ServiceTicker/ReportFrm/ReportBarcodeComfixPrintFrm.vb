@@ -1,0 +1,48 @@
+﻿Imports MySql.Data.MySqlClient
+Imports Microsoft.Reporting.WinForms
+
+Public Class ReportBarcodeComfixPrintFrm
+
+    Private Sub ReportBarcodeComfixPrintFrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'ReportDBDataSet.ReportBarcodeComfix' table. You can move, or remove it, as needed.
+        Me.ReportBarcodeComfixTableAdapter.Fill(Me.ReportDBDataSet.ReportBarcodeComfix)
+        Me.ReportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout)
+        Me.Icon = Mainfrm.Icon
+        Me.ReportViewer1.RefreshReport()
+    End Sub
+  
+    Dim cn, datetime As String
+
+    Private Sub ReportViewer1_Load(sender As Object, e As EventArgs) Handles ReportViewer1.Load
+        Try
+            strSQL = "SELECT com_name,images FROM company"
+            Mainfrm.lblMainStatus.Text = strSQL
+            cmd = New MySqlCommand(strSQL, ConnectionDB)
+            Call open_connection()
+            Dr = cmd.ExecuteReader
+            Dr.Read()
+            cn = Dr.Item("com_name")
+        Catch ex As Exception
+            Mainfrm.lblMainStatus.Text = "ผิดพลาด " & ex.Message
+        End Try
+        If ReportBarcodeComfixFrm.cbbRRcashstatus.Text = "ชำระเงิน(ตามวันที่)" Then
+            datetime = "ยอดชำระเงินระหว่างวันที่ " & ReportBarcodeComfixFrm.DateTimePicker1.Text & " ถึง " & ReportBarcodeComfixFrm.DateTimePicker2.Text
+        ElseIf ReportBarcodeComfixFrm.cbbRRcashstatus.Text = "ยังไม่ได้ชำระเงิน(ตามวันที่)" Then
+            datetime = "ยอดยังไม่ได้ชำระเงินระหว่างวันที่ " & ReportBarcodeComfixFrm.DateTimePicker1.Text & " ถึง " & ReportBarcodeComfixFrm.DateTimePicker2.Text
+        ElseIf ReportBarcodeComfixFrm.cbbRRcashstatus.Text = "ชำระเงิน(วันนี้)" Then
+            datetime = "ยอดชำระเงินวันที่ " & Now.ToString("dd MMMM yyyy")
+        ElseIf ReportBarcodeComfixFrm.cbbRRcashstatus.Text = "ยังไม่ได้ชำระเงิน(วันนี้)" Then
+            datetime = "ยอดยังไม่ได้ชำระเงินระหว่างวันที่ " & Now.ToString("dd MMMM yyyy")
+        End If
+
+        Dim cnn As New ReportParameter("com_name", cn)
+        Dim u_datetime As New ReportParameter("start_end_date", datetime)
+        Dim u_totalpro As New ReportParameter("total_pro", ReportBarcodeComfixFrm.txtRRrows.Text)
+        Dim st_money As New ReportParameter("total_money", ReportBarcodeComfixFrm.txtmoney.Text)
+
+        
+        ReportViewer1.LocalReport.SetParameters(New ReportParameter() {cnn, u_datetime, u_totalpro, st_money})
+        Me.ReportViewer1.LocalReport.EnableExternalImages = True
+        Me.ReportViewer1.RefreshReport()
+    End Sub
+End Class

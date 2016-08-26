@@ -1,0 +1,3 @@
+2016-03-06  5:40:37 2784 [Warning] Failed to load slave replication state from table mysql.gtid_slave_pos: 1286: Unknown storage engine 'InnoDB'
+2016-03-06  5:40:37 7360 [Note] C:\ServiceTicker\Mysql\bin\mysqld.exe: ready for connections.
+Version: '10.1.10-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution

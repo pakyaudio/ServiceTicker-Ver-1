@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AuditDataSet1" targetNamespace="http://tempuri.org/AuditDataSet1.xsd" xmlns:mstns="http://tempuri.org/AuditDataSet1.xsd" xmlns="http://tempuri.org/AuditDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="servicetickerConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="servicetickerConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ServiceTicker.My.MySettings.GlobalReference.Default.servicetickerConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="auditTableAdapter" GeneratorDataComponentClassName="auditTableAdapter" Name="audit" UserDataComponentName="auditTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="servicetickerConnectionString (MySettings)" DbObjectName="serviceticker.audit" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT `datetime`, `money1`, `money2`, `money5`, `money10`, `money20`, `money50`, `money100`, `money500`, `money1000`, `totalAll`, `check`, `transfer`, `cash`, `charges`, `deliverMorning`, `deliverNoon`, `deliverEvening`, `totalDeliver`, `difference` FROM `audit`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="datetime" DataSetColumn="datetime" />
+              <Mapping SourceColumn="money1" DataSetColumn="money1" />
+              <Mapping SourceColumn="money2" DataSetColumn="money2" />
+              <Mapping SourceColumn="money5" DataSetColumn="money5" />
+              <Mapping SourceColumn="money10" DataSetColumn="money10" />
+              <Mapping SourceColumn="money20" DataSetColumn="money20" />
+              <Mapping SourceColumn="money50" DataSetColumn="money50" />
+              <Mapping SourceColumn="money100" DataSetColumn="money100" />
+              <Mapping SourceColumn="money500" DataSetColumn="money500" />
+              <Mapping SourceColumn="money1000" DataSetColumn="money1000" />
+              <Mapping SourceColumn="totalAll" DataSetColumn="totalAll" />
+              <Mapping SourceColumn="check" DataSetColumn="check" />
+              <Mapping SourceColumn="transfer" DataSetColumn="transfer" />
+              <Mapping SourceColumn="cash" DataSetColumn="cash" />
+              <Mapping SourceColumn="charges" DataSetColumn="charges" />
+              <Mapping SourceColumn="deliverMorning" DataSetColumn="deliverMorning" />
+              <Mapping SourceColumn="deliverNoon" DataSetColumn="deliverNoon" />
+              <Mapping SourceColumn="deliverEvening" DataSetColumn="deliverEvening" />
+              <Mapping SourceColumn="totalDeliver" DataSetColumn="totalDeliver" />
+              <Mapping SourceColumn="difference" DataSetColumn="difference" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AuditDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="AuditDataSet1" msprop:Generator_UserDSName="AuditDataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="audit" msprop:Generator_TableClassName="auditDataTable" msprop:Generator_TableVarName="tableaudit" msprop:Generator_RowChangedName="auditRowChanged" msprop:Generator_TablePropName="audit" msprop:Generator_RowDeletingName="auditRowDeleting" msprop:Generator_RowChangingName="auditRowChanging" msprop:Generator_RowEvHandlerName="auditRowChangeEventHandler" msprop:Generator_RowDeletedName="auditRowDeleted" msprop:Generator_RowClassName="auditRow" msprop:Generator_UserTableName="audit" msprop:Generator_RowEvArgName="auditRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="datetime" msprop:Generator_ColumnVarNameInTable="columndatetime" msprop:Generator_ColumnPropNameInRow="datetime" msprop:Generator_ColumnPropNameInTable="datetimeColumn" msprop:Generator_UserColumnName="datetime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money1" msprop:Generator_ColumnVarNameInTable="columnmoney1" msprop:Generator_ColumnPropNameInRow="money1" msprop:Generator_ColumnPropNameInTable="money1Column" msprop:Generator_UserColumnName="money1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money2" msprop:Generator_ColumnVarNameInTable="columnmoney2" msprop:Generator_ColumnPropNameInRow="money2" msprop:Generator_ColumnPropNameInTable="money2Column" msprop:Generator_UserColumnName="money2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money5" msprop:Generator_ColumnVarNameInTable="columnmoney5" msprop:Generator_ColumnPropNameInRow="money5" msprop:Generator_ColumnPropNameInTable="money5Column" msprop:Generator_UserColumnName="money5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money10" msprop:Generator_ColumnVarNameInTable="columnmoney10" msprop:Generator_ColumnPropNameInRow="money10" msprop:Generator_ColumnPropNameInTable="money10Column" msprop:Generator_UserColumnName="money10" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money20" msprop:Generator_ColumnVarNameInTable="columnmoney20" msprop:Generator_ColumnPropNameInRow="money20" msprop:Generator_ColumnPropNameInTable="money20Column" msprop:Generator_UserColumnName="money20" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money50" msprop:Generator_ColumnVarNameInTable="columnmoney50" msprop:Generator_ColumnPropNameInRow="money50" msprop:Generator_ColumnPropNameInTable="money50Column" msprop:Generator_UserColumnName="money50" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money100" msprop:Generator_ColumnVarNameInTable="columnmoney100" msprop:Generator_ColumnPropNameInRow="money100" msprop:Generator_ColumnPropNameInTable="money100Column" msprop:Generator_UserColumnName="money100" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money500" msprop:Generator_ColumnVarNameInTable="columnmoney500" msprop:Generator_ColumnPropNameInRow="money500" msprop:Generator_ColumnPropNameInTable="money500Column" msprop:Generator_UserColumnName="money500" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="money1000" msprop:Generator_ColumnVarNameInTable="columnmoney1000" msprop:Generator_ColumnPropNameInRow="money1000" msprop:Generator_ColumnPropNameInTable="money1000Column" msprop:Generator_UserColumnName="money1000" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="totalAll" msprop:Generator_ColumnVarNameInTable="columntotalAll" msprop:Generator_ColumnPropNameInRow="totalAll" msprop:Generator_ColumnPropNameInTable="totalAllColumn" msprop:Generator_UserColumnName="totalAll" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="check" msprop:Generator_ColumnVarNameInTable="columncheck" msprop:Generator_ColumnPropNameInRow="check" msprop:Generator_ColumnPropNameInTable="checkColumn" msprop:Generator_UserColumnName="check" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="transfer" msprop:Generator_ColumnVarNameInTable="columntransfer" msprop:Generator_ColumnPropNameInRow="transfer" msprop:Generator_ColumnPropNameInTable="transferColumn" msprop:Generator_UserColumnName="transfer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cash" msprop:Generator_ColumnVarNameInTable="columncash" msprop:Generator_ColumnPropNameInRow="cash" msprop:Generator_ColumnPropNameInTable="cashColumn" msprop:Generator_UserColumnName="cash" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="charges" msprop:Generator_ColumnVarNameInTable="columncharges" msprop:Generator_ColumnPropNameInRow="charges" msprop:Generator_ColumnPropNameInTable="chargesColumn" msprop:Generator_UserColumnName="charges" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deliverMorning" msprop:Generator_ColumnVarNameInTable="columndeliverMorning" msprop:Generator_ColumnPropNameInRow="deliverMorning" msprop:Generator_ColumnPropNameInTable="deliverMorningColumn" msprop:Generator_UserColumnName="deliverMorning" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deliverNoon" msprop:Generator_ColumnVarNameInTable="columndeliverNoon" msprop:Generator_ColumnPropNameInRow="deliverNoon" msprop:Generator_ColumnPropNameInTable="deliverNoonColumn" msprop:Generator_UserColumnName="deliverNoon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deliverEvening" msprop:Generator_ColumnVarNameInTable="columndeliverEvening" msprop:Generator_ColumnPropNameInRow="deliverEvening" msprop:Generator_ColumnPropNameInTable="deliverEveningColumn" msprop:Generator_UserColumnName="deliverEvening" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="totalDeliver" msprop:Generator_ColumnVarNameInTable="columntotalDeliver" msprop:Generator_ColumnPropNameInRow="totalDeliver" msprop:Generator_ColumnPropNameInTable="totalDeliverColumn" msprop:Generator_UserColumnName="totalDeliver" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="difference" msprop:Generator_ColumnVarNameInTable="columndifference" msprop:Generator_ColumnPropNameInRow="difference" msprop:Generator_ColumnPropNameInTable="differenceColumn" msprop:Generator_UserColumnName="difference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

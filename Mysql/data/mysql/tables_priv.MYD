@@ -1,0 +1,13 @@
+2016-01-26  7:50:55 2476 [Warning] Failed to load slave replication state from table mysql.gtid_slave_pos: 1286: Unknown storage engine 'InnoDB'
+2016-01-26  7:50:55 3624 [Note] C:\ServiceTicker\Mysql\bin\mysqld.exe: ready for connections.
+Version: '10.1.10-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2016-01-26  9:12:37 2856 [ERROR] mysqld.exe: Table '.\serviceticker\applogs' is marked as crashed and should be repaired
+2016-01-26  9:12:37 2856 [Warning] Checking table:   '.\serviceticker\applogs'
+2016-01-26  9:19:20 1780 [ERROR] mysqld.exe: Table '.\serviceticker\check_stock_bc' is marked as crashed and should be repaired
+2016-01-26  9:19:20 1780 [Warning] Checking table:   '.\serviceticker\check_stock_bc'
+2016-01-26  9:19:20 1780 [ERROR] mysqld.exe: Table '.\serviceticker\check_stock_bc_id' is marked as crashed and should be repaired
+2016-01-26  9:19:20 1780 [Warning] Checking table:   '.\serviceticker\check_stock_bc_id'
+2016-01-26  9:19:22 1780 [ERROR] mysqld.exe: Table '.\serviceticker\taxinvoice' is marked as crashed and should be repaired
+2016-01-26  9:19:22 1780 [Warning] Checking table:   '.\serviceticker\taxinvoice'
+2016-01-26  9:19:22 1780 [ERROR] mysqld.exe: Table '.\serviceticker\taxinvoice_id' is marked as crashed and should be repaired
+2016-01-26  9:19:22 1780 [Warning] Checking table:   '.\serviceticker\taxinvoice_id'
